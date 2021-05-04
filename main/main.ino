@@ -17,7 +17,7 @@ void setup() {
   }
   LITTLEFS.format();
 
-  // Pwnagotchi setup :)
+  // Pwnagotchi setup
 
   pwna_setup();
 }
