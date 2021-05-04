@@ -1,9 +1,10 @@
 String __version__ = "0.0.1";
 
-void do_clear() {
-  Serial.println("Would clear display...");
-}
+#include "FS.h"
+#include "LITTLEFS.h"
+#include <ArduinoJson.h>
 
+// TODO: use sd card, littlefs is pretty smol
 
 void setup() {
   Serial.begin(115200);
@@ -11,11 +12,16 @@ void setup() {
   Serial.print("Current version: ");
   Serial.println(__version__);
 
+  if (!LITTLEFS.begin()) {
+    Serial.println("Failed to mount LITTLEFS");
+  }
+  LITTLEFS.format();
+
   // Pwnagotchi setup
 
-  config = load_config();
-  Serial.println("Current config: ");
+  pwna_setup();
+}
 
-
-  do_auto_mode(agent);
+void loop() {
+  
 }
